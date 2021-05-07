@@ -19,7 +19,10 @@
           {{ genero.genero }}
         </ion-col>
       </ion-row>
-      <app-slideshow-poster [peliculas]="genero.pelis"></app-slideshow-poster>
+      <app-slideshow-poster 
+        (load)="cargarDatos($event)"
+        [peliculas]="genero.pelis">
+      </app-slideshow-poster>
     </ion-grid>
 
   </div>

@@ -20,10 +20,7 @@ export class Tab3Page {
     private moviesService: MoviesService) {}
 
   async ionViewWillEnter() {
-    this.peliculas = await this.dataLocal.cargarFavoritos();
-    this.generos = await this.moviesService.cargarGeneros();
-
-    this.pelisPorGenero(this.generos, this.peliculas);
+    this.cargarDatos();
   }
 
   pelisPorGenero(generos: Genre[], peliculas: PeliculaDetalle[]){
@@ -35,5 +32,12 @@ export class Tab3Page {
         pelis: peliculas.filter( peli => peli.genres.find( genre => genre.id === genero.id ))
       });
     });
+  }
+
+  async cargarDatos() {
+    this.peliculas = await this.dataLocal.cargarFavoritos();
+    this.generos = await this.moviesService.cargarGeneros();
+
+    this.pelisPorGenero(this.generos, this.peliculas);
   }
 }
